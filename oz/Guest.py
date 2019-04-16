@@ -475,8 +475,8 @@ class Guest(object):
         if self.tdl.arch in ["armv7l"]:
             oz.ozutil.lxml_subelement(features, "gic", attributes={'version': '2'})
         # CPU
-        if self.tdl.arch in ["aarch64", "armv7l"] and self.libvirt_type == "kvm":
-            # Possibly related to RHBZ 1171501 - need host passthrough for aarch64 and arm with kvm
+        if self.tdl.arch in ["aarch64", "armv7l"]:
+            # Possibly related to RHBZ 1171501 - need host passthrough for aarch64 and arm with kvm and qemu also
             cpu = oz.ozutil.lxml_subelement(domain, "cpu", None, {'mode': 'custom', 'match': 'exact'})
             oz.ozutil.lxml_subelement(cpu, "model", "host", {'fallback': 'allow'})
         # os
